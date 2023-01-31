@@ -13,6 +13,7 @@ class Book extends Model
         'title',
         'publisher',
         'pages',
-        'author_id'
+        'author_id',
+        'publicly_available'
     ];
 }

@@ -19,6 +19,7 @@ class CreateBooksTable extends Migration
             $table->string("publisher");
             $table->integer("pages");
             $table->integer("author_id");
+            $table->boolean("publicly_available");
             $table->timestamps();
         });
     }

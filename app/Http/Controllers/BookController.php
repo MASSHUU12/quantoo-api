@@ -31,7 +31,8 @@ class BookController extends Controller
             'title' => "required|string|max:255",
             'publisher' => "required|string|max:255",
             'pages' => "required|integer|min:1",
-            'author_id' => "required|integer|min:0"
+            'author_id' => "required|integer|min:0",
+            'publicly_available' => 'required|boolean' // 1 or 0
         ]);
 
         // Create book when validation is successful
@@ -39,7 +40,8 @@ class BookController extends Controller
             'title' => $validated['title'],
             'publisher' => $validated['publisher'],
             'pages' => $validated['pages'],
-            'author_id' => $validated['author_id']
+            'author_id' => $validated['author_id'],
+            'publicly_available' => $validated['publicly_available']
         ]);
 
         return Response([
@@ -80,7 +82,8 @@ class BookController extends Controller
             'title' => "string|max:255",
             'publisher' => "string|max:255",
             'pages' => "integer|min:1",
-            'author_id' => "integer|min:0"
+            'author_id' => "integer|min:0",
+            'publicly_available' => "boolean" // 1 or 0
         ]);
 
         $b = $book->find($id);
@@ -90,6 +93,7 @@ class BookController extends Controller
         array_key_exists('publisher', $val) && $b->publisher = $val['publisher'];
         array_key_exists('pages', $val) && $b->pages = $val['pages'];
         array_key_exists('author_id', $val) && $b->author_id = $val['author_id'];
+        array_key_exists('publicly_available', $val) && $b->publicly_available = $val['publicly_available'];
 
         $b->save();
 
