@@ -27,3 +27,4 @@ Route::delete("book/{id}", [BookController::class, "destroy"]);
 Route::post("author", [AuthorController::class, "store"]);
 Route::delete("author/{number}", [AuthorController::class, "destroy"]);
 Route::get("author/{name}", [AuthorController::class, 'show']);
+Route::get("author/{id}/books", [BookController::class, 'showByAuthor']);

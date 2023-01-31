@@ -68,6 +68,25 @@ class BookController extends Controller
     }
 
     /**
+     * Display the specified resource by author.
+     *
+     * @param  \App\Models\Book  $book
+     * @param int $id - author id
+     * @return \Illuminate\Http\Response
+     */
+    public function showByAuthor(Book $book, int $id): Response
+    {
+        if ($id < 0)
+            return Response([
+                "message" => "ID cannot be less than zero."
+            ], 400);
+
+        $books = $book->where("author_id", "=", $id)->get();
+
+        return Response([$books], 200);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

@@ -22,18 +22,22 @@
       - [Implementation notes](#implementation-notes-3)
       - [Parameters](#parameters-3)
       - [Response Messages](#response-messages-3)
-    - [GET: /books/{name}](#get-booksname)
+    - [GET: /author/{name}](#get-authorname)
       - [Implementation notes](#implementation-notes-4)
       - [Parameters](#parameters-4)
       - [Response Messages](#response-messages-4)
-    - [DELETE: /books/{id}](#delete-booksid)
+    - [GET: /author/{id}/books](#get-authoridbooks)
       - [Implementation notes](#implementation-notes-5)
       - [Parameters](#parameters-5)
       - [Response Messages](#response-messages-5)
-    - [DELETE: /author/{id}](#delete-authorid)
+    - [DELETE: /books/{id}](#delete-booksid)
       - [Implementation notes](#implementation-notes-6)
       - [Parameters](#parameters-6)
       - [Response Messages](#response-messages-6)
+    - [DELETE: /author/{id}](#delete-authorid)
+      - [Implementation notes](#implementation-notes-7)
+      - [Parameters](#parameters-7)
+      - [Response Messages](#response-messages-7)
 
 
 ## Development setup
@@ -287,7 +291,7 @@ Response Content Type: `application/json`
 
 </table>
 
-### GET: /books/{name}
+### GET: /author/{name}
 
 #### Implementation notes
 
@@ -332,6 +336,104 @@ Response Content Type: `application/json`
         }
     ]
 ]
+```
+</td>
+</tr>
+
+<tr>
+<td>
+
+**400**
+
+</td>
+<td>This action accepts 3 or more characters.</td>
+<td>
+
+```json
+{
+    "message": "This action accepts 3 or more characters."
+}
+```
+</td>
+</tr>
+
+</table>
+
+### GET: /author/{id}/books
+
+#### Implementation notes
+
+This endpoint returns books by a specific author.
+
+Response Content Type: `application/json`
+
+#### Parameters
+
+| Parameter | Value    | Parameter type | Data type |
+| --------- | -------- | -------------- | --------- |
+| id        | Required | Path           | String    |
+
+#### Response Messages
+
+<table>
+
+<tr>
+<th>Parameter</th>
+<th>Reason</th>
+<th>Response</th>
+</tr>
+
+<tr>
+<td>
+
+**200**
+
+</td>
+<td>Successfully returned books by a specific author.</td>
+<td>
+
+```json
+[
+    [
+        {
+            "id": 1,
+            "title": "Witcher",
+            "publisher": "Aadsad",
+            "pages": 2137,
+            "author_id": 2,
+            "publicly_available": 1,
+            "created_at": "2023-01-31T13:12:07.000000Z",
+            "updated_at": "2023-01-31T13:12:07.000000Z"
+        },
+        {
+            "id": 2,
+            "title": "Witcher",
+            "publisher": "123ab",
+            "pages": 2137,
+            "author_id": 2,
+            "publicly_available": 0,
+            "created_at": "2023-01-31T13:12:28.000000Z",
+            "updated_at": "2023-01-31T13:24:16.000000Z"
+        }
+    ]
+]
+```
+</td>
+</tr>
+
+<tr>
+<td>
+
+**400**
+
+</td>
+<td>ID cannot be less than zero.</td>
+<td>
+
+```json
+{
+    "message": "ID cannot be less than zero."
+}
 ```
 </td>
 </tr>
