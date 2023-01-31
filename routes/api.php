@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('users/{id}', function ($id) {
-});
+/**
+ * number = 0 means all
+ */
+Route::get('books/{number}', [BookController::class, "show"]);
