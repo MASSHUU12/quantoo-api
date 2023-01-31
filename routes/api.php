@@ -20,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('books/{number}', [BookController::class, "show"]);
 Route::post('book', [BookController::class, "store"]);
+Route::delete('book/{id}', [BookController::class, 'destroy']);
