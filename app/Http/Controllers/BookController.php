@@ -106,7 +106,7 @@ class BookController extends Controller
      */
     public function destroy(int $id): Response
     {
-        // Delete book from database
+        // Delete book from the database
         Book::destroy($id);
 
         return Response([

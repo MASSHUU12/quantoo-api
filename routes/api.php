@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('books/{number}', [BookController::class, "show"]);
-Route::post('book', [BookController::class, "store"]);
-Route::post('book/{id}', [BookController::class, "update"]);
-Route::delete('book/{id}', [BookController::class, 'destroy']);
+Route::get("books/{number}", [BookController::class, "show"]);
+Route::post("book", [BookController::class, "store"]);
+Route::post("book/{id}", [BookController::class, "update"]);
+Route::delete("book/{id}", [BookController::class, "destroy"]);
+
+Route::post("author", [AuthorController::class, "store"]);
+Route::delete("author/{number}", [AuthorController::class, "destroy"]);
