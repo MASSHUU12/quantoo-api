@@ -24,9 +24,28 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
-        //
+        // Validate passed parameters
+        $validated = $request->validate([
+            'title' => "required|string|max:255",
+            'publisher' => "required|string|max:255",
+            'pages' => "required|integer|min:1",
+            'author_id' => "required|integer|min:0"
+        ]);
+
+        // Create book when validation is successful
+        $book = Book::create([
+            'title' => $validated['title'],
+            'publisher' => $validated['publisher'],
+            'pages' => $validated['pages'],
+            'author_id' => $validated['author_id']
+        ]);
+
+        return Response([
+            "message" => "Book created.",
+            "book" => $book
+        ], 200);
     }
 
     /**

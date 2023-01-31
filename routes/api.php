@@ -18,7 +18,5 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-/**
- * number = 0 means all
- */
 Route::get('books/{number}', [BookController::class, "show"]);
+Route::post('book', [BookController::class, "store"]);
