@@ -19,11 +19,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+// Routes related to books
 Route::get("books/{number}", [BookController::class, "show"]);
 Route::post("book", [BookController::class, "store"]);
 Route::post("book/{id}", [BookController::class, "update"]);
 Route::delete("book/{id}", [BookController::class, "destroy"]);
 
+// Routes related to authors
 Route::post("author", [AuthorController::class, "store"]);
 Route::delete("author/{number}", [AuthorController::class, "destroy"]);
 Route::get("author/{name}", [AuthorController::class, 'show']);

@@ -72,7 +72,7 @@ If you want the server to be available on the local network, use:
 The file to create the database is already prepared (docker-compose.yml), you just need to run it:
 
 ```bash
-docker compose up
+> docker compose up
 ```
 
 At `http://127.0.0.1:8080/` you will find the phpmyadmin control panel.

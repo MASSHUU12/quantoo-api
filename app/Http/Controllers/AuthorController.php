@@ -53,6 +53,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author, string $name): Response
     {
+        // Checks that the name is the required minimum length
         if (strlen($name) < 3) {
             return Response([
                 "message" => "This action accepts 3 or more characters."

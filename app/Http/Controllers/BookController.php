@@ -59,9 +59,11 @@ class BookController extends Controller
      */
     public function show(Book $book, int $number): Response
     {
+        // If number is 0 return all results
         if ($number == 0)
             $books = $book->all();
         else
+            // Otherwise, return only the specified number of results
             $books = $book->all()->take($number);
 
         return Response($books, 200);
