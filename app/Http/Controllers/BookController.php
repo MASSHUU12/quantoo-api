@@ -70,11 +70,32 @@ class BookController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Book  $book
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Book $book, $id): Response
     {
-        //
+        // Validate passed parameters
+        $val = $request->validate([
+            'title' => "string|max:255",
+            'publisher' => "string|max:255",
+            'pages' => "integer|min:1",
+            'author_id' => "integer|min:0"
+        ]);
+
+        $b = $book->find($id);
+
+        // Update the column if a new value has been passed in
+        array_key_exists('title', $val) && $b->title = $val['title'];
+        array_key_exists('publisher', $val) && $b->publisher = $val['publisher'];
+        array_key_exists('pages', $val) && $b->pages = $val['pages'];
+        array_key_exists('author_id', $val) && $b->author_id = $val['author_id'];
+
+        $b->save();
+
+        return Response([
+            "message" => "Book updated successfully."
+        ], 200);
     }
 
     /**
@@ -85,6 +106,7 @@ class BookController extends Controller
      */
     public function destroy(int $id): Response
     {
+        // Delete book from database
         Book::destroy($id);
 
         return Response([
