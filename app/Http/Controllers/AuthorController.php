@@ -48,11 +48,22 @@ class AuthorController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Author  $author
+     * @param string $name
      * @return \Illuminate\Http\Response
      */
-    public function show(Author $author)
+    public function show(Author $author, string $name): Response
     {
-        //
+        if (strlen($name) < 3) {
+            return Response([
+                "message" => "This action accepts 3 or more characters."
+            ], 400);
+        }
+
+        // Find authors in whose name the given text is found
+        $authors = $author->where('name', 'like', '%' . $name . '%')
+            ->take(5)->get();
+
+        return Response([$authors], 200);
     }
 
     /**
